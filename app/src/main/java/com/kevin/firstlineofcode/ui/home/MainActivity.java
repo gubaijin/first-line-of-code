@@ -45,10 +45,66 @@ public class MainActivity extends BaseActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+//        PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position + 1);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, chooseFragment(position))
                 .commit();
+    }
+
+    public Fragment chooseFragment(int position) {
+        Fragment mFragment = null;
+        switch (position) {
+            case 0:
+                mFragment = PlaceholderFragment.newInstance(position);
+                break;
+            case 1:
+                mFragment = SectionAFragment.newInstance();
+                break;
+            case 2:
+                mFragment = SectionBFragment.newInstance();
+                break;
+            case 3:
+                mFragment = SectionCFragment.newInstance();
+                break;
+            case 4:
+                mFragment = SectionDFragment.newInstance();
+                break;
+            case 5:
+                mFragment = SectionEFragment.newInstance();
+                break;
+            case 6:
+                mFragment = SectionFFragment.newInstance();
+                break;
+            case 7:
+                mFragment = SectionGFragment.newInstance();
+                break;
+            case 8:
+                mFragment = SectionHFragment.newInstance();
+                break;
+            case 9:
+                mFragment = SectionIFragment.newInstance();
+                break;
+            case 10:
+                mFragment = SectionJFragment.newInstance();
+                break;
+            case 11:
+                mFragment = SectionKFragment.newInstance();
+                break;
+            case 12:
+                mFragment = SectionLFragment.newInstance();
+                break;
+            case 13:
+                mFragment = SectionMFragment.newInstance();
+                break;
+            case 14:
+                mFragment = SectionNFragment.newInstance();
+                break;
+            case 15:
+                mFragment = SectionOFragment.newInstance();
+                break;
+        }
+        return mFragment;
     }
 
     public void onSectionAttached(int number) {
@@ -89,6 +145,7 @@ public class MainActivity extends BaseActivity
         /**
          * Returns a new instance of this fragment for the given section
          * number.
+         * @param sectionNumber
          */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
@@ -104,59 +161,7 @@ public class MainActivity extends BaseActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int sectionNumber = this.getArguments().getInt(ARG_SECTION_NUMBER);
-            int layoutId = 0;
-            switch (sectionNumber) {
-                case 1:
-                    layoutId = R.layout.fragment_main;
-                    break;
-                case 2:
-                    layoutId = R.layout.fragment_section_1;
-                    break;
-                case 3:
-                    layoutId = R.layout.fragment_section_2;
-                    break;
-                case 4:
-                    layoutId = R.layout.fragment_section_3;
-                    break;
-                case 5:
-                    layoutId = R.layout.fragment_section_4;
-                    break;
-                case 6:
-                    layoutId = R.layout.fragment_section_5;
-                    break;
-                case 7:
-                    layoutId = R.layout.fragment_section_6;
-                    break;
-                case 8:
-                    layoutId = R.layout.fragment_section_7;
-                    break;
-                case 9:
-                    layoutId = R.layout.fragment_section_8;
-                    break;
-                case 10:
-                    layoutId = R.layout.fragment_section_9;
-                    break;
-                case 11:
-                    layoutId = R.layout.fragment_section_10;
-                    break;
-                case 12:
-                    layoutId = R.layout.fragment_section_11;
-                    break;
-                case 13:
-                    layoutId = R.layout.fragment_section_12;
-                    break;
-                case 14:
-                    layoutId = R.layout.fragment_section_13;
-                    break;
-                case 15:
-                    layoutId = R.layout.fragment_section_14;
-                    break;
-                case 16:
-                    layoutId = R.layout.fragment_section_15;
-                    break;
-            }
-            View rootView = inflater.inflate(layoutId, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
 
