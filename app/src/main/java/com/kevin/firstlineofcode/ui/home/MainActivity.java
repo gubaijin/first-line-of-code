@@ -1,26 +1,19 @@
-package com.kevin.firstlineofcode.ui;
+package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.kevin.firstlineofcode.R;
+import com.kevin.firstlineofcode.ui.base.BaseActivity;
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -46,6 +39,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        showGlobalContextActionBar("Hello");
     }
 
     @Override
@@ -58,7 +52,11 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
+        String[] strs = getResources().getStringArray(R.array.title_list);
+        if (number > 0) {
+            mTitle = strs[number - 1];
+        }
+/*        switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
                 break;
@@ -68,7 +66,7 @@ public class MainActivity extends ActionBarActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
-        }
+        }*/
     }
 
     public void restoreActionBar() {
@@ -106,7 +104,59 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            int sectionNumber = this.getArguments().getInt(ARG_SECTION_NUMBER);
+            int layoutId = 0;
+            switch (sectionNumber) {
+                case 1:
+                    layoutId = R.layout.fragment_main;
+                    break;
+                case 2:
+                    layoutId = R.layout.fragment_section_1;
+                    break;
+                case 3:
+                    layoutId = R.layout.fragment_section_2;
+                    break;
+                case 4:
+                    layoutId = R.layout.fragment_section_3;
+                    break;
+                case 5:
+                    layoutId = R.layout.fragment_section_4;
+                    break;
+                case 6:
+                    layoutId = R.layout.fragment_section_5;
+                    break;
+                case 7:
+                    layoutId = R.layout.fragment_section_6;
+                    break;
+                case 8:
+                    layoutId = R.layout.fragment_section_7;
+                    break;
+                case 9:
+                    layoutId = R.layout.fragment_section_8;
+                    break;
+                case 10:
+                    layoutId = R.layout.fragment_section_9;
+                    break;
+                case 11:
+                    layoutId = R.layout.fragment_section_10;
+                    break;
+                case 12:
+                    layoutId = R.layout.fragment_section_11;
+                    break;
+                case 13:
+                    layoutId = R.layout.fragment_section_12;
+                    break;
+                case 14:
+                    layoutId = R.layout.fragment_section_13;
+                    break;
+                case 15:
+                    layoutId = R.layout.fragment_section_14;
+                    break;
+                case 16:
+                    layoutId = R.layout.fragment_section_15;
+                    break;
+            }
+            View rootView = inflater.inflate(layoutId, container, false);
             return rootView;
         }
 

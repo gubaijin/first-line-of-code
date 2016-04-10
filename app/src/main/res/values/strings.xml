@@ -1,15 +1,30 @@
 <resources>
-    <string name="app_name">FirstLineOfCode</string>
+    <string name="app_name">FirstLineOfCode11</string>
     <string name="title_activity_main">MainActivity</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string-array name="title_list">
+        <item>《第一行代码》</item>
+        <item>第1章：开始启程，你的第一行Android代码</item>
+        <item>第2章：先从看得到的入手，探究活动</item>
+        <item>第3章：软件也要拼脸蛋，UI开发的点点滴滴</item>
+        <item>第4章：手机平板要兼顾，探究碎片</item>
+        <item>第5章：全局大喇叭，详解广播机制</item>
+        <item>第6章：数据存储全方案，详解持久化技术</item>
+        <item>第7章：跨程序共享数据，探究内容提供器</item>
+        <item>第8章：丰富你的程序，运用手机多媒体</item>
+        <item>第9章：后台默默的劳动者，探究服务</item>
+        <item>第10章：看看精彩的世界，使用网络技术</item>
+        <item>第11章：Android特色开发，基于位置的服务</item>
+        <item>第12章：Android特色开发，使用传感器</item>
+        <item>第13章：继续进阶，你要掌握的技巧</item>
+        <item>第14章：进入实战，开发酷欧天气</item>
+        <item>第15章：最后一步，发布应用到Google Play上</item>
+    </string-array>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Settings11</string>
 </resources>
