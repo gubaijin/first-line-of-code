@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.kevin.firstlineofcode.R;
+import com.kevin.firstlineofcode.ui.base.BaseBarActivity;
+import com.kevin.firstlineofcode.ui.sectionA.SectionAaActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,9 +21,11 @@ import com.kevin.firstlineofcode.R;
  * Use the {@link SectionAFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SectionAFragment extends Fragment {
+public class SectionAFragment extends Fragment implements View.OnClickListener{
 //    private OnFragmentInteractionListener mListener;
 
+    private Button btn1;    //隐藏标题栏
+    private BaseBarActivity baseActivity;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -45,7 +50,14 @@ public class SectionAFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_section_1, null);
+        initViews(root);
+        baseActivity = (BaseBarActivity)getActivity();
         return root;
+    }
+
+    private void initViews(View view) {
+        btn1 = (Button) view.findViewById(R.id.section_a_btn1);
+        btn1.setOnClickListener(this);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -70,6 +82,15 @@ public class SectionAFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 //        mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.section_a_btn1:
+                baseActivity.openActivity(getActivity(), SectionAaActivity.class);
+                break;
+        }
     }
 
     /**

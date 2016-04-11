@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstLineOfCode11</string>
+    <string name="app_name">FirstLineOfCode</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="title_list">

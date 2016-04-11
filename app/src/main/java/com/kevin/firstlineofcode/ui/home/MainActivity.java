@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kevin.firstlineofcode.R;
-import com.kevin.firstlineofcode.ui.base.BaseActivity;
+import com.kevin.firstlineofcode.ui.base.BaseBarActivity;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends BaseBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
