@@ -1,7 +1,6 @@
 package com.kevin.firstlineofcode.ui.base;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -14,9 +13,9 @@ public class BaseActivity extends Activity {
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
     }
 
-    public void openActivity(Context context, Class<?> clz){
+    public void openActivity(Class<?> clz){
         Intent intent = new Intent();
-        intent.setClass(context,clz );
+        intent.setClass(this,clz );
         startActivity(intent);
     }
 }

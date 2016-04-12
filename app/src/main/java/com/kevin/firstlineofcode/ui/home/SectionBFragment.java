@@ -1,14 +1,19 @@
 package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.kevin.firstlineofcode.R;
+import com.kevin.firstlineofcode.ui.base.BaseBarActivity;
+import com.kevin.firstlineofcode.ui.base.EmptyActivity;
+import com.kevin.firstlineofcode.ui.util.Constants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +26,10 @@ import com.kevin.firstlineofcode.R;
 public class SectionBFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
+    private BaseBarActivity baseActivity;
+    private Button mBtn_1;
+    private Button mBtn_2;
+    private Button mBtn_3, mBtn_4, mBtn_5;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -45,7 +54,59 @@ public class SectionBFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_section_2, null);
+        baseActivity = (BaseBarActivity)getActivity();
+        initViews(root);
         return root;
+    }
+
+    private void initViews(View root) {
+        mBtn_1 = (Button) root.findViewById(R.id.section_b_btn1);
+        mBtn_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.kevin.firstlineofcode.ACTION_START");
+                intent.putExtra("toEmpty", "intent1");
+                startActivity(intent);
+            }
+        });
+
+        mBtn_2 = (Button) root.findViewById(R.id.section_b_btn2);
+        mBtn_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseActivity.openActivity(EmptyActivity.class, "intent2");
+            }
+        });
+
+        mBtn_3 = (Button) root.findViewById(R.id.section_b_btn3);
+        mBtn_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.baidu.com"));
+                startActivity(intent);
+            }
+        });
+
+        mBtn_4 = (Button) root.findViewById(R.id.section_b_btn4);
+        mBtn_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:18516091008"));
+                startActivity(intent);
+            }
+        });
+
+        mBtn_5 = (Button) root.findViewById(R.id.section_b_btn5);
+        mBtn_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EmptyActivity.class);
+                intent.putExtra(Constants.INTENT_KEY_NAME_ONE, "intent5");
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,4 +148,16 @@ public class SectionBFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == -1) {
+                    String returnedData = data.getStringExtra("data_return");
+                    baseActivity.showToast(returnedData);
+                }
+                break;
+            default:
+        }
+    }
 }

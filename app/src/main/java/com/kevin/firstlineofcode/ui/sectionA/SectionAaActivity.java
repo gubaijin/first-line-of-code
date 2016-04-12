@@ -29,7 +29,7 @@ public class SectionAaActivity extends BaseBarActivity implements GestureDetecto
         tv_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(getApplicationContext(), SectionAbActivity.class);
+                openActivity(SectionAbActivity.class);
             }
         });
 

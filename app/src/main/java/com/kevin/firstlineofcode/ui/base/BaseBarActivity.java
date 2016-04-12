@@ -1,6 +1,5 @@
 package com.kevin.firstlineofcode.ui.base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kevin.firstlineofcode.R;
+import com.kevin.firstlineofcode.ui.util.Constants;
 
 /**
  * Created by Kevin on 2016/4/9.
@@ -18,9 +18,18 @@ public class BaseBarActivity extends ActionBarActivity {
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
     }
 
-    public void openActivity(Context context, Class<?> clz){
+    public void openActivity(Class<?> clz){
         Intent intent = new Intent();
-        intent.setClass(context,clz );
+        intent.setClass(this, clz);
+        startActivity(intent);
+    }
+
+    public void openActivity(Class<?> clz, String val){
+        Intent intent = new Intent();
+        intent.setClass(this, clz);
+        if(!val.isEmpty()){
+            intent.putExtra(Constants.INTENT_KEY_NAME_ONE, val);
+        }
         startActivity(intent);
     }
 

@@ -1,6 +1,7 @@
 package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -145,6 +146,7 @@ public class MainActivity extends BaseBarActivity
         /**
          * Returns a new instance of this fragment for the given section
          * number.
+         *
          * @param sectionNumber
          */
         public static PlaceholderFragment newInstance(int sectionNumber) {
@@ -173,4 +175,8 @@ public class MainActivity extends BaseBarActivity
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

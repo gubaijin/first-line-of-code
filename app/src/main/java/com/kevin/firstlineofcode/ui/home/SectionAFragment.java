@@ -88,7 +88,7 @@ public class SectionAFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.section_a_btn1:
-                baseActivity.openActivity(getActivity(), SectionAaActivity.class);
+                baseActivity.openActivity(SectionAaActivity.class);
                 break;
         }
     }
