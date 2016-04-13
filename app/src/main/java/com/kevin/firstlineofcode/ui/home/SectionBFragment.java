@@ -13,6 +13,8 @@ import android.widget.Button;
 import com.kevin.firstlineofcode.R;
 import com.kevin.firstlineofcode.ui.base.BaseBarActivity;
 import com.kevin.firstlineofcode.ui.base.EmptyActivity;
+import com.kevin.firstlineofcode.ui.sectionB.SectionBaActivity;
+import com.kevin.firstlineofcode.ui.util.ActivityCollector;
 import com.kevin.firstlineofcode.ui.util.Constants;
 
 /**
@@ -29,7 +31,8 @@ public class SectionBFragment extends Fragment {
     private BaseBarActivity baseActivity;
     private Button mBtn_1;
     private Button mBtn_2;
-    private Button mBtn_3, mBtn_4, mBtn_5;
+    private Button mBtn_3, mBtn_4, mBtn_5, mBtn_6, mBtn_7, mBtn_8, mBtn_9;
+    private Button mBtn_10, mBtn_11;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -104,7 +107,55 @@ public class SectionBFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), EmptyActivity.class);
                 intent.putExtra(Constants.INTENT_KEY_NAME_ONE, "intent5");
-                startActivityForResult(intent, 1);
+                getActivity().startActivityForResult(intent, 1);
+            }
+        });
+
+        mBtn_6 = (Button) root.findViewById(R.id.section_b_btn6);
+        mBtn_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseActivity.openActivity(SectionBaActivity.class);
+            }
+        });
+
+        mBtn_7 = (Button) root.findViewById(R.id.section_b_btn7);
+        mBtn_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseActivity.openActivity(SectionBaActivity.class, "saveInstanceState");
+            }
+        });
+
+        mBtn_8 = (Button) root.findViewById(R.id.section_b_btn8);
+        mBtn_8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseActivity.openActivity(SectionBaActivity.class, "lanuchMode");
+            }
+        });
+
+        mBtn_9 = (Button) root.findViewById(R.id.section_b_btn9);
+        mBtn_9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseActivity.showToast(getActivity().getClass().getSimpleName());
+            }
+        });
+
+        mBtn_10 = (Button) root.findViewById(R.id.section_b_btn10);
+        mBtn_10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityCollector.finishAll();
+            }
+        });
+
+        mBtn_11 = (Button) root.findViewById(R.id.section_b_btn11);
+        mBtn_11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionBaActivity.actionStart(getActivity(), "actionStart", null);
             }
         });
     }

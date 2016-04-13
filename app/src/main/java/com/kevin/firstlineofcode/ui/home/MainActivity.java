@@ -21,14 +21,14 @@ public class MainActivity extends BaseBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -177,6 +177,7 @@ public class MainActivity extends BaseBarActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        Fragment sectionBFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        sectionBFragment.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -1,18 +1,25 @@
 package com.kevin.firstlineofcode.ui.base;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kevin.firstlineofcode.R;
+import com.kevin.firstlineofcode.ui.util.ActivityCollector;
 import com.kevin.firstlineofcode.ui.util.Constants;
 
 /**
  * Created by Kevin on 2016/4/9.
  */
 public class BaseBarActivity extends ActionBarActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityCollector.addActivity(this);
+    }
 
     public void showToast(String content){
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
@@ -54,4 +61,9 @@ public class BaseBarActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+    }
 }

@@ -8,21 +8,58 @@
 
     <Button android:id="@+id/section_b_btn1" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:gravity="center"
+        android:textAllCaps="false"
         android:text="隐式Intent（一）"/>
     <Button android:id="@+id/section_b_btn2" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:gravity="center"
         android:layout_below="@+id/section_b_btn1"
+        android:textAllCaps="false"
         android:text="隐式Intent（二）"/>
     <Button android:id="@+id/section_b_btn3" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:gravity="center"
         android:layout_below="@+id/section_b_btn2"
+        android:textAllCaps="false"
         android:text="隐式Intent（三：打开网页）"/>
     <Button android:id="@+id/section_b_btn4" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:gravity="center"
         android:layout_below="@+id/section_b_btn3"
+        android:textAllCaps="false"
         android:text="隐式Intent（四：打电话）"/>
     <Button android:id="@+id/section_b_btn5" android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:gravity="center"
+    android:layout_below="@+id/section_b_btn4"
+        android:textAllCaps="false"
+    android:text="隐式Intent（五：返回给上一个活动）"/>
+    <Button android:id="@+id/section_b_btn6" android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:gravity="center"
+    android:layout_below="@+id/section_b_btn5"
+        android:textAllCaps="false"
+    android:text="加载一个dialog Avtivity"/>
+    <Button android:id="@+id/section_b_btn7" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:gravity="center"
-        android:layout_below="@+id/section_b_btn4"
-        android:text="隐式Intent（五：返回给上一个活动）"/>
+        android:layout_below="@+id/section_b_btn6"
+        android:textAllCaps="false"
+        android:text="回收时用onSaveInstanceState()保存数据"/>
+    <Button android:id="@+id/section_b_btn8" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center"
+        android:layout_below="@+id/section_b_btn7"
+        android:textAllCaps="false"
+        android:text="启动模式"/>
+    <Button android:id="@+id/section_b_btn9" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center"
+        android:layout_below="@+id/section_b_btn8"
+        android:textAllCaps="false"
+        android:text="通过getClass().getSimpleName()可以得到当前活动的Activity名"/>
+
+    <Button android:id="@+id/section_b_btn10" android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:gravity="center"
+    android:layout_below="@+id/section_b_btn9"
+    android:textAllCaps="false"
+    android:text="activityController 任意页面到达后点击退出"/>
+
+    <Button android:id="@+id/section_b_btn11" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center"
+        android:layout_below="@+id/section_b_btn10"
+        android:textAllCaps="false"
+        android:text="启动活动的最佳写法（目标对象向外暴露方法）"/>
 </RelativeLayout>
