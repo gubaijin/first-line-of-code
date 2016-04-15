@@ -1,14 +1,21 @@
 package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kevin.firstlineofcode.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +28,8 @@ import com.kevin.firstlineofcode.R;
 public class SectionDFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
+    private ListView mListView;
+    public List<String> list;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -45,7 +54,15 @@ public class SectionDFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_section_4, null);
+        mListView = (ListView) root.findViewById(R.id.section_4_lv);
+        initData();
         return root;
+    }
+
+    private void initData() {
+        list = new ArrayList<String>();
+        list.add("111");
+        mListView.setAdapter(new MyAdapter(getActivity(), 0, list));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,4 +104,33 @@ public class SectionDFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+}
+
+class MyAdapter extends ArrayAdapter<String>{
+
+    public MyAdapter(Context context, int resource, List<String> objects) {
+        super(context, resource, objects);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        String content = getItem(position);
+        View view;
+        ViewHolder viewHolder;
+        if(convertView == null){
+            view = LayoutInflater.from(getContext()).inflate(R.layout.listview_layout, null);
+            viewHolder = new ViewHolder();
+            viewHolder.content_tv = (TextView) view.findViewById(R.id.listview_layout_tv);
+            view.setTag(viewHolder);
+        }else{
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        viewHolder.content_tv.setText(content);
+        return view;
+    }
+
+    class ViewHolder{
+        TextView content_tv;
+    }
 }
