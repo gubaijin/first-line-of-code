@@ -34,8 +34,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.sectionB.SectionBaActivity"
-            android:theme="@android:style/Theme.Dialog">
+        <activity
+            android:name=".ui.sectionB.SectionBaActivity"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".ui.CustomerView.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
