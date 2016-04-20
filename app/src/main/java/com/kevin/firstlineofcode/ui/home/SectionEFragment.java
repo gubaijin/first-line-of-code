@@ -2,9 +2,12 @@ package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,8 @@ import android.widget.TextView;
 
 import com.kevin.firstlineofcode.R;
 import com.kevin.firstlineofcode.ui.base.BaseBarActivity;
+import com.kevin.firstlineofcode.ui.sectionE.LocalBroadcastReceiver;
+import com.kevin.firstlineofcode.ui.util.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,10 @@ public class SectionEFragment extends Fragment {
     private ListView mListView;
 
     private BaseBarActivity mBaseActivity;
+
+    private LocalBroadcastReceiver mLocalBroadcastReceiver;
+
+    private LocalBroadcastManager mLocalBroadcastManager;
 
     /**
      * Use this factory method to create a new instance of
@@ -110,13 +119,46 @@ public class SectionEFragment extends Fragment {
                 "器中是不允许开启线程的，当onReceive()方法运行了较长时间而没有结束时，程序就会报错。\n" +
                 "因此广播接收器更多的是扮演一种打开程序其他组件的角色，比如创建一条状态栏通知，或\n" +
                 "者启动一个服务等");
+        //index:5
+        list.add("发送一条标准广播");
+        //index:6
+        list.add("发送一条有序广播：只需要改动一行代码， 即将sendBroadcast() 方法改成\n" +
+                "sendOrderedBroadcast()方法" +
+                "通过android:priority 属性给广播接收器设置了优先级" +
+                "在onReceive()方法中调用了abortBroadcast()方法，就表示将这条广播截断");
+        //index:7
+        list.add("使用本地广播：简单地解决广播的安全性问题，主要就是使用了一个LocalBroadcastManager 来对广播进行\n" +
+                "管理。注意：本地广播是无法通过静态注册的方式来接收的：1. 可以明确地知道正在发送的广播不会离开我们的程序，因此不需要担心机密数据泄\n" +
+                "漏的问题。\n" +
+                "2. 其他的程序无法将广播发送到我们程序的内部，因此不需要担心会有安全漏洞的隐\n" +
+                "患。\n" +
+                "3. 发送本地广播比起发送系统全局广播将会更加高效。");
         mListView.setAdapter(new MyAdapter5(getActivity(), R.layout.listview_layout, list));
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0:
+                    case 5:
+                        Intent intent5 = new Intent("com.kevin.MY_BROADCAST");
+                        intent5.putExtra("isAbort", false);
+                        mBaseActivity.sendBroadcast(intent5);
+                        break;
+                    case 6:
+                        Intent intent6 = new Intent("com.kevin.MY_BROADCAST");
+                        intent6.putExtra("isAbort", true);
+                        mBaseActivity.sendOrderedBroadcast(intent6, null);
+                        break;
+                    case 7:
+                        mLocalBroadcastManager = LocalBroadcastManager.getInstance(MyApplication.getmContext());
+                        //注册本地广播监听器
+                        IntentFilter intentFilter = new IntentFilter();
+                        intentFilter.addAction("com.kevin.LOCAL_BROADCAST");
+                        mLocalBroadcastReceiver = new LocalBroadcastReceiver();
+                        mLocalBroadcastManager.registerReceiver(mLocalBroadcastReceiver, intentFilter);
+
+                        Intent intent7 = new Intent("com.kevin.LOCAL_BROADCAST");
+                        mLocalBroadcastManager.sendBroadcast(intent7);
                         break;
                 }
             }
@@ -139,6 +181,12 @@ public class SectionEFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }*/
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLocalBroadcastManager.unregisterReceiver(mLocalBroadcastReceiver);
     }
 
     @Override

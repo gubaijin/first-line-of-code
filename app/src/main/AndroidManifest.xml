@@ -43,6 +43,17 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+        <receiver android:name=".ui.sectionE.MyBroadcastReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="com.kevin.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".ui.sectionE.MyAnotherBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.kevin.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
