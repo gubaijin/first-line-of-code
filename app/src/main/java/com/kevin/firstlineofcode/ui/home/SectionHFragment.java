@@ -207,6 +207,53 @@ public class SectionHFragment extends Fragment implements AdapterView.OnItemClic
                 "default:\n" +
                 "break;\n" +
                 "}");
+        list.add("8.3.3 从相册中选择照片\n" +
+                "public void onClick(View v) {\n" +
+                "// 创建File对象，用于存储选择的照片\n" +
+                "File outputImage = new File(Environment.\n" +
+                "getExternalStorageDirectory(), \"output_image.jpg\");\n" +
+                "try {\n" +
+                "if (outputImage.exists()) {\n" +
+                "outputImage.delete();\n" +
+                "}\n" +
+                "outputImage.createNewFile();\n" +
+                "} catch (IOException e) {\n" +
+                "e.printStackTrace();\n" +
+                "}\n" +
+                "imageUri = Uri.fromFile(outputImage);\n" +
+                "Intent intent = new Intent(\"android.intent.action.GET_CONTENT\");\n" +
+                "intent.setType(\"image/*\");\n" +
+                "intent.putExtra(\"crop\", true);\n" +
+                "intent.putExtra(\"scale\", true);\n" +
+                "intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);");
+        list.add("8.4 播放多媒体文件 \n" +
+                "8.4.1 播放音频:MediaPlayer\n" +
+                "方法名 功能描述"+
+                "setDataSource() 设置要播放的音频文件的位置。\n" +
+                "prepare() 在开始播放之前调用这个方法完成准备工作。\n" +
+                "start() 开始或继续播放音频。\n" +
+                "pause() 暂停播放音频。\n" +
+                "reset() 将MediaPlayer 对象重置到刚刚创建的状态。\n" +
+                "seekTo() 从指定的位置开始播放音频。\n" +
+                "stop() 停止播放音频。调用这个方法后的MediaPlayer 对象无法再播放音频。\n" +
+                "release() 释放掉与MediaPlayer 对象相关的资源。\n" +
+                "isPlaying() 判断当前MediaPlayer 是否正在播放音频。\n" +
+                "getDuration() 获取载入的音频文件的时长。");
+        list.add("8.4.2 播放视频:VideoView\n" +
+                "方法名功能描述\n" +
+                "setVideoPath() 设置要播放的视频文件的位置。\n" +
+                "start() 开始或继续播放视频。\n" +
+                "pause() 暂停播放视频。\n" +
+                "resume() 将视频重头开始播放。\n" +
+                "seekTo() 从指定的位置开始播放视频。\n" +
+                "isPlaying() 判断当前是否正在播放视频。\n" +
+                "suspend() 将所占用的资源释放掉。\n" +
+                "getDuration() 获取载入的视频文件的时长。\n" +
+                "注意：VideoView 并不是一\n" +
+                "个万能的视频播放工具类，它在视频格式的支持以及播放效率方面都存在着较大的不足。所\n" +
+                "以，如果想要仅仅使用VideoView 就编写出一个功能非常强大的视频播放器是不太现实的。\n" +
+                "但是如果只是用于播放一些游戏的片头动画，或者某个应用的视频宣传，使用VideoView 还\n" +
+                "是绰绰有余的。");
         listView.setAdapter(new MyAdapter5(getContext(), R.layout.listview_layout, list));
         listView.setOnItemClickListener(this);
     }
@@ -260,6 +307,10 @@ public class SectionHFragment extends Fragment implements AdapterView.OnItemClic
             //启动摄像头
             case 4:
                 ((BaseBarActivity)getContext()).openActivity(EmptyActivity.class, "toPhoto");
+                break;
+            //相册中选择图片
+            case 5:
+                ((BaseBarActivity)getContext()).openActivity(EmptyActivity.class, "toPhotoAlbum");
                 break;
         }
     }

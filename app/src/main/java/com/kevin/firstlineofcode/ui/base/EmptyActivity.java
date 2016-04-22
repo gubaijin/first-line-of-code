@@ -26,7 +26,13 @@ public class EmptyActivity extends BaseDoubleClickActivity implements BaseDouble
 
     private ImageView img_photo;
 
+    /**
+     * 启动裁剪
+     */
     public static final int TAKE_PHOTO = 1;
+    /**
+     * 将裁剪的图片进行展示
+     */
     public static final int CROP_PHOTO = 2;
     Uri imageUri;
 
@@ -99,6 +105,25 @@ public class EmptyActivity extends BaseDoubleClickActivity implements BaseDouble
                 intentImg.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intentImg, TAKE_PHOTO);
                 break;
+                case "toPhotoAlbum":
+                    //创建File对象，用于存储选择的图片
+                    File outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
+                    if(outputImage.exists()){
+                        outputImage.delete();
+                    }
+                    try {
+                        outputImage.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    imageUri = Uri.fromFile(outputImage);
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra("crop", true);
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CROP_PHOTO);
+                    break;
             }
         }else{
             showToast("不知道你要干嘛！");
@@ -125,7 +150,9 @@ public class EmptyActivity extends BaseDoubleClickActivity implements BaseDouble
             case CROP_PHOTO:
                 if(resultCode == RESULT_OK){
                     try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        /*Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));*/
+                        Uri data1 = data.getData(); //当imageUri为空时，可以使用Uri data1 = data.getData();获得
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data1));
                         img_photo.setImageBitmap(bitmap);//将裁剪后的照片显示出来
                         img_photo.setVisibility(View.VISIBLE);
                     } catch (FileNotFoundException e) {
