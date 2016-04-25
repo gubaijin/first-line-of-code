@@ -8,6 +8,6 @@
 
     <TextView android:id="@+id/section_label" android:layout_width="fill_parent"
         android:layout_height="fill_parent" android:gravity="center"
-        android:text="第11章"/>
+        android:text="第11章 地理位置、百度地图相关（将在后面的学习过程中进行单独的研究）"/>
 
 </RelativeLayout>

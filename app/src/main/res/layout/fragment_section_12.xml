@@ -8,6 +8,7 @@
 
     <TextView android:id="@+id/section_label" android:layout_width="fill_parent"
         android:layout_height="fill_parent" android:gravity="center"
-        android:text="第12章"/>
+        android:text="第12章 光照传感器（制作简易光照探测器）、
+        加速度传感器（摇一摇）、方向传感器（指南针）  由于手边暂时没有安卓真机，所以将在下一项目（效果集锦）中进行示例展示"/>
 
 </RelativeLayout>

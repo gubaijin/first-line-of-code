@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kevin.firstlineofcode" >
+    package="com.kevin.firstlineofcode">
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".ui.util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.home.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +28,7 @@
         <activity
             android:name=".ui.sectionA.SectionAbActivity"
             android:launchMode="singleInstance" />
-        <activity android:name=".ui.base.EmptyActivity" >
+        <activity android:name=".ui.base.EmptyActivity">
             <intent-filter>
                 <action android:name="com.kevin.firstlineofcode.ACTION_START" />
 
@@ -36,13 +37,11 @@
         </activity>
         <activity
             android:name=".ui.sectionB.SectionBaActivity"
-            android:theme="@android:style/Theme.Dialog" >
-        </activity>
+            android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".ui.CustomerView.Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver android:name=".ui.sectionE.MyBroadcastReceiver">
             <intent-filter android:priority="100">
@@ -54,7 +53,11 @@
                 <action android:name="com.kevin.MY_BROADCAST" />
             </intent-filter>
         </receiver>
-        <service android:name=".ui.sectionI.MyService"></service>
+
+        <service android:name=".ui.sectionI.MyService" />
+
+        <activity android:name=".ui.sectionJ.WebviewActivity" />
+        <activity android:name=".ui.sectionJ.HttpURLConnActivity"></activity>
     </application>
 
 </manifest>
