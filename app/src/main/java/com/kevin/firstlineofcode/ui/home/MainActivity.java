@@ -2,7 +2,7 @@ package com.kevin.firstlineofcode.ui.home;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,7 +44,7 @@ public class MainActivity extends BaseBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         showGlobalContextActionBar("Hello");
         try {
-            ActivityInfo info = getPackageManager().getActivityInfo(getComponentName(), PackageManager.GET_META_DATA);
+            ApplicationInfo info = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             showToast(info.metaData.getString("UMENG_CHANNEL"));
         } catch (Exception e) {
             e.printStackTrace();
